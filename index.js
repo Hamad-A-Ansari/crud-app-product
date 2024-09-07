@@ -3,8 +3,8 @@ const mongoose = require('mongoose');//Importing Express
 const Product = require('./models/product.model.js');
 const productRoute = require("./routes/product.route.js");
 const app = express();
-
-
+const config = require('./config.json');
+const password = config.password;
 
 //middleware
 app.use(express.json());
@@ -29,7 +29,7 @@ app.get('/', (req, res) =>{
 
 
 
-mongoose.connect("mongodb+srv://appAdmin:pBA46oJIoAjN8wCk@crudappbackend.jjn9boo.mongodb.net/Node-API?retryWrites=true&w=majority&appName=CrudAppBackend")
+mongoose.connect(`mongodb+srv://appAdmin:${password}@crudappbackend.jjn9boo.mongodb.net/Node-API?retryWrites=true&w=majority&appName=CrudAppBackend`)
 .then(()=>{
   console.log(`Connected to DB`);
   app.listen(3000, () =>{
